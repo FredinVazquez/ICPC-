@@ -18,7 +18,8 @@
 
 
 
-<h3>Implementación</h3>
+### Implementación
+
 ```c++
 require 'redcarpet'
 markdown = Redcarpet.new("Hello World!")

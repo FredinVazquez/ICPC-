@@ -14,6 +14,12 @@
   Una solución sería simplemente hacer tal cual la implementación de knapsack problem y repetirlo, pero esto resulta no tan viable, otra opción sería conseguir todas 
   las sumas de los pesos de arroz que sea posible conseguir para después buscar la cantidad deseada por medio de una búsqueda binaria, se estaría buscando el número
   más cercano al valor buscado por el refugio.
+  
+  Entonces, tenemos que idear una forma de generar todas las sumas posibles dado los kilos de arroz que tiene cada bolsa, para esto se tendrá que observar los rangos de pesos que puede llegar a necesitar el refugio y es de 5x10^4 además de que las bolsas de arroz van de 1 a 100, entonces solo nos debemos de preocupar con el refugio
+  debido a que esto nos hace saber que la suma máxima que se podría llegar a solicitar es de 5x10^4, así que al momento de generar todas las sumas nos vamos a poder 
+  limitar hasta 5x10^4, ya que no tendría sentido generar sumas mayores ya que nunca nos van a preguntar por eso.
+  
+  En este momento ya sabemos hasta dónde parar, ahora ya queda ver la manera de generar estas sumas, y lo que podemos hacer es por medio de un ciclo for tal que se esté tomando en cuenta tanto  
 </p>
 
 

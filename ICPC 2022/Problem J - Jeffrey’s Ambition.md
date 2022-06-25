@@ -33,6 +33,16 @@
   
   <hr>
   Una vez que fue entendido que el problema se puede resolver de este modo ya solo queda la implementación, para esto es posible usar el algoritmo de Dinic el cual es imprescindible a la hora de resolver problemas de flujo y es recomendable tenerlo siempre a la mano lo cual se debe a que es un algoritmo que nos permite hallar el flujo máximo en un tiempo polinomial, sin depender de la capacidad de flujo de las aristas.
+
+<h3>Detalles de implementación</h3>
+Al momento de realizar la implementación se deberá tener en mente que se desea lograr lo siguiente:
+
+Por lo cual, lo dado en el input será justamente esto siendo que únicamente se debe de crear la arista que vaya del vértice que representa al millonario hacia al vértice que representa empresa, tal que dicha empresa sea la deseada por el millonario, y la capacidad de la arista es la unitaria. 
+Es immportante notar el 'id' o nombre de cada vértice debido a que para no causar choque de estos deberá debe ser diferente el nombre de los millonarios con el nombre de las empresas, de igual forma debe ser diferente el id o nombre del source & target para no causar choques en el algoritmo.
+
+Lo siguiente será ver que para convertir esto en un grafo de flujo será necesario tener una fuente  (source) y un objetivo (target), tal que el flujo que llegue al target hasta llegar un flow block será considerado como el flujo máximo. Entonces el otro punto es crear aristas que vaya del source hacía todos los millonarios, y de igual forma crear aristas que vayan de las empresas al target.
+
+Finalmente, la interpretación del flujo máximo será la cantidad de emparejamientos de millonarios con una única empresa se pudieron realizar, por lo cual al final se tendrá que restar ese flujo con la cantidad de empresas totales para obtener el número de empresas que se quedaron sin dueño, y esta vendría siendo la respuesta.
 </p>
 
 ### Implementación

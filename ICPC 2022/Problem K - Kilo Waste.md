@@ -28,12 +28,17 @@
   arreglo[0] = 2
   
   Ahora, se hace otra iteración y en esa iteración será necesario tomar en cuenta el anterior valor que tenemos:
+  
   arreglo[0] + arreglo[1]
+  
   2 + 2
+  
   4
   
   De igual forma, para la siguiente iteración es necesario tomar en cuenta el valor anterior
+  
   4 + 2
+  
   6
   
   Así sucesivamente podemos ir construyendo el arreglo que contenga todas las sumas. Ahora se debe de pensar en la forma de buscar dichos números, y es que al generar las sumas de esta manera se tendrá un problema y es la posición de los números debido a que no se estaría llevando un orden y para aplicar una búsqueda será necesario tener que ordenar el arreglo tal que nos llevaría una complejidad de O(nlog(n)), lo cual estaría resultando algo muy ineficiente, así que lo mejor sería trabajar sobre los índices, o sea usar los indices para generar todas las sumas posibles tal que después se deposita los índices en otro arreglo y ya tendríamos todos las sumas en un arreglo y ya estaría ordenado, siendo que en lugar de tener una complejidad de O(nlog(n)) se tiene ya una complejidad lineal.
@@ -44,8 +49,63 @@
 ### Implementación
 
 ```c++
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-puts markdown.to_html
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	
+	// Suma máxima a realizar 5 × 10^4, no nos van a pedir una suma mayor
+	int k,p; cin>>k>>p;
+	int dp[50005];  // Se podría usar un bool, pero para evitar errores sobre la inicialización
+	int numer;
+	
+	// Caso base es querer 0 kilos y sería simplemente no comprar nada
+	dp[0] = 1;
+	
+	for(int i=0;i<p;i++)
+	    {
+	         cin>>numer;
+	         dp[numer] = 1;
+	         
+	         for(int j=numer;j<50005;j++){
+	            
+	            if(dp[j-numer] == 1)
+	                {
+	                    //cout<<"Se hizo: "<<j<<endl;
+	                    dp[j] = 1;
+	                }
+	                
+	         }
+	    }
+	
+	// Vaciando los índices en un arreglo
+	vector<int> v;
+	
+	for(int i=0;i<50005;i++)
+	    {
+	        if(dp[i] == 1){
+	            v.push_back(i);
+	        }
+	    }
+	
+	// Aplicando búsqueda binaria, por las condiciones a cumplir se necesitaría encontrar un valor igual o que
+	// sea el más próximo al buscado, siendo el próximo mayor para poder cubrir la solicitud y que sobre arroz
+	// Estas características cumple lower_bound.
+	int value;
+	vector<int>::iterator ans;
+	for(int i=0;i<k;i++)
+	    {
+	        cin>>value;
+	        ans = lower_bound(v.begin(), v.end(), value);
+	        cout<<abs(value-(*ans))<<endl;
+	    }
+	
+	
+	return 0;
+}
+
 ```
+
+### Referencias:
+<a href="https://www.geeksforgeeks.org/lower_bound-in-cpp/#:~:text=The%20lower_bound()%20method%20in,or%20equal%20to%20that%20number.">Lower_bound C++</a>
